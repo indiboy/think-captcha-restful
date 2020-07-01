@@ -9,7 +9,7 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-use indiboy\captcha\facade\Captcha;
+use alone\captcha\facade\Captcha;
 use think\facade\Route;
 use think\Response;
 

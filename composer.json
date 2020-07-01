@@ -20,12 +20,12 @@
         ]
     },
     "extra": {
-        "think": {
+        "indiboy": {
             "services": [
-                "indiboy\\captcha\\CaptchaService"
+                "alone\\captcha\\CaptchaService"
             ],
             "config":{
-                "captcha": "src/config.php"
+                "alone": "src/config.php"
             }            
         }
     }

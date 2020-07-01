@@ -1,6 +1,6 @@
 <?php
 
-namespace indiboy\captcha;
+namespace alone\captcha;
 
 use think\Route;
 use think\Service;
@@ -17,7 +17,7 @@ class CaptchaService extends Service
         });
 
         $this->registerRoutes(function (Route $route) {
-            $route->get('indiboy/[:config]', "\\indiboy\\captcha\\CaptchaController@index");
+            $route->get('alone/[:config]', "\\alone\\captcha\\CaptchaController@index");
         });
     }
 }

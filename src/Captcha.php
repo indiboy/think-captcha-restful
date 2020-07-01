@@ -9,7 +9,7 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace indiboy\captcha;
+namespace alone\captcha;
 
 use Exception;
 use think\Config;
