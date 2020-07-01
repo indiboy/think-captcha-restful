@@ -1,6 +1,6 @@
 <?php
 
-namespace think\captcha;
+namespace indiboy\captcha;
 
 use think\Route;
 use think\Service;
@@ -11,13 +11,13 @@ class CaptchaService extends Service
     public function boot()
     {
         Validate::maker(function ($validate) {
-            $validate->extend('captcha', function ($value) {
+            $validate->extend('indiboy', function ($value) {
                 return captcha_check($value);
             }, ':attribute错误!');
         });
 
         $this->registerRoutes(function (Route $route) {
-            $route->get('captcha/[:config]', "\\think\\captcha\\CaptchaController@index");
+            $route->get('indiboy/[:config]', "\\indiboy\\captcha\\CaptchaController@index");
         });
     }
 }

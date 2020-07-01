@@ -1,10 +1,10 @@
 {
-    "name": "topthink/think-captcha",
-    "description": "captcha package for thinkphp",
+    "name": "indiboy/think-captcha-restful",
+    "description": "captcha restful package for thinkphp",
     "authors": [
         {
-            "name": "yunwuxin",
-            "email": "448901948@qq.com"
+            "name": "indiboy",
+            "email": "indiboy@qq.com"
         }
     ],
     "license": "Apache-2.0",
@@ -13,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "think\\captcha\\": "src/"
+            "indiboy\\captcha\\": "src/"
         },
         "files": [
             "src/helper.php"
@@ -22,7 +22,7 @@
     "extra": {
         "think": {
             "services": [
-                "think\\captcha\\CaptchaService"
+                "indiboy\\captcha\\CaptchaService"
             ],
             "config":{
                 "captcha": "src/config.php"

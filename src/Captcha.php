@@ -9,7 +9,7 @@
 // | Author: yunwuxin <448901948@qq.com>
 // +----------------------------------------------------------------------
 
-namespace think\captcha;
+namespace indiboy\captcha;
 
 use Exception;
 use think\Config;
@@ -79,9 +79,9 @@ class Captcha
     protected function configure(string $config = null): void
     {
         if (is_null($config)) {
-            $config = $this->config->get('captcha', []);
+            $config = $this->config->get('indiboy', []);
         } else {
-            $config = $this->config->get('captcha.' . $config, []);
+            $config = $this->config->get('indiboy.' . $config, []);
         }
 
         foreach ($config as $key => $val) {
@@ -143,18 +143,18 @@ class Captcha
      */
     public function check(string $code): bool
     {
-        if (!$this->session->has('captcha')) {
+        if (!$this->session->has('indiboy')) {
             return false;
         }
 
-        $key = $this->session->get('captcha.key');
+        $key = $this->session->get('indiboy.key');
 
         $code = mb_strtolower($code, 'UTF-8');
 
         $res = password_verify($code, $key);
 
         if ($res) {
-            $this->session->delete('captcha');
+            $this->session->delete('indiboy');
         }
 
         return $res;
