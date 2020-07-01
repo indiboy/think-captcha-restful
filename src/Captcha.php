@@ -14,7 +14,7 @@ namespace indiboy\captcha;
 use Exception;
 use think\Config;
 use think\Response;
-use think\Session;
+use think\Cache;
 
 class Captcha
 {
@@ -27,9 +27,9 @@ class Captcha
     private $config = null;
 
     /**
-     * @var Session|null
+     * @var Cache|null
      */
-    private $session = null;
+    private $cache = null;
 
     // 验证码字符集合
     protected $codeSet = '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY';
@@ -64,12 +64,12 @@ class Captcha
      * 架构方法 设置参数
      * @access public
      * @param Config  $config
-     * @param Session $session
+     * @param Cache $cache
      */
-    public function __construct(Config $config, Session $session)
+    public function __construct(Config $config, Cache $cache)
     {
         $this->config  = $config;
-        $this->session = $session;
+        $this->cache = $cache;
     }
 
     /**
@@ -125,7 +125,7 @@ class Captcha
 
         $hash = password_hash($key, PASSWORD_BCRYPT, ['cost' => 10]);
 
-        $this->session->set('captcha', [
+        $this->cache->set('captcha', [
             'key' => $hash,
         ]);
 
@@ -143,25 +143,25 @@ class Captcha
      */
     public function check(string $code): bool
     {
-        if (!$this->session->has('indiboy')) {
+        if (!$this->cache->has('indiboy')) {
             return false;
         }
 
-        $key = $this->session->get('indiboy.key');
+        $key = $this->cache->get('indiboy.key');
 
         $code = mb_strtolower($code, 'UTF-8');
 
         $res = password_verify($code, $key);
 
         if ($res) {
-            $this->session->delete('indiboy');
+            $this->cache->delete('indiboy');
         }
 
         return $res;
     }
 
     /**
-     * 输出验证码并把验证码的值保存的session中
+     * 输出验证码并把验证码的值保存的cache中
      * @access public
      * @param null|string $config
      * @param bool        $api
